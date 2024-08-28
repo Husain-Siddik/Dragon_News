@@ -20,9 +20,8 @@ const router = createRouter({
     {
       path:'/career',
       name : 'career',
-    
-
-    }
+      component:()=> import ('../views/CareerView.vue')  
+    },
   ]
 })
 

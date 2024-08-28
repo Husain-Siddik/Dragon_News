@@ -5,7 +5,14 @@ export default {
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily:{
+        // name of font any name : then object
+      _popins:'Poppins',
+      _outfit :'Outfit'
+
+      },
+    },
   },
   plugins: [
     require('daisyui'),
