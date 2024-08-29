@@ -1,7 +1,8 @@
 <template>
-  <div class="about">
-    <h class="text-5xl text-red-800">This is an about page</h>
-  </div>
+<div>
+  <Navber></Navber>
+</div>
 </template>
 <script setup>
+import Navber from '../components/Navber.vue'
 </script>

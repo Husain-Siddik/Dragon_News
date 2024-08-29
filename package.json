@@ -10,8 +10,10 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "moment": "^2.30.1",
     "pinia": "^2.1.7",
     "vue": "^3.4.29",
+    "vue-marquee-text-component": "^2.0.1",
     "vue-router": "^4.3.3"
   },
   "devDependencies": {

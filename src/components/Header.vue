@@ -1,0 +1,16 @@
+<template>
+    <div class="text-center mt-12 ">
+        <img class="mx-auto" :src="logo" alt="Dragon NEWS">
+        <h2 class="capitalize text-xl pb-2 ">jurnalism with fair and faver</h2>
+        <h2 class="text-xl">
+            {{ moment().format(" dddd,MMMM D, YYYY") }}
+        </h2>
+    </div>
+    <LeatestNews></LeatestNews>
+</template>
+
+<script setup>
+import logo from '../../public/imges/logo.png'
+import moment from 'moment';
+import LeatestNews from '../components/LeatestNews.vue'
+</script>

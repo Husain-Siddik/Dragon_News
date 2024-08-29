@@ -6,10 +6,11 @@ export default {
   ],
   theme: {
     extend: {
+      
       fontFamily:{
         // name of font any name : then object
-      _popins:'Poppins',
-      _outfit :'Outfit'
+      _popins:'Poppins, ui-serif',
+      _outfit :'Outfit ,ui-serif'
 
       },
     },
