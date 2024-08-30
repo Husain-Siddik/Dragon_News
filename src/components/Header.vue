@@ -6,11 +6,9 @@
             {{ moment().format(" dddd,MMMM D, YYYY") }}
         </h2>
     </div>
-    <LeatestNews></LeatestNews>
 </template>
 
 <script setup>
 import logo from '../../public/imges/logo.png'
 import moment from 'moment';
-import LeatestNews from '../components/LeatestNews.vue'
 </script>
