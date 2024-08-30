@@ -7,12 +7,10 @@
 
             <div class=" md:max-w-screen-2xl z-0 mt-2  text-center   ">
                 <marquee-text>
-                   
-                    <p class="md:max-w-7xl font-_outfit font-semibold">
+                    <p class="md:max-w-7xl font-_outfit font-semibold ">
                         Match Highlights: Germany vs Spain — as it happened ! Match Highlights: Germany vs Spain as...
                     </p>
-                    <br>
-                   
+                    
 
                 </marquee-text>
             </div>

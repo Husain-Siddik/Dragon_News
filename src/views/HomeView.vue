@@ -4,6 +4,8 @@ import LeftSideNav from '../components/LeftSideNav.vue'
 import RightSideNav from '../components/RightSideNav.vue'
 import Header from '../components/Header.vue'
 import LeatestNews from '../components/LeatestNews.vue'
+import LeftSidePic from '../components/LeftSidePic.vue'
+import NewsAll from '../components/NewsAll.vue'
 </script>
 
 
@@ -13,13 +15,14 @@ import LeatestNews from '../components/LeatestNews.vue'
     <LeatestNews></LeatestNews>
     <Navbar />
     <div class=" grid grid-cols-1  md:grid-cols-4 gap-6 p-2 md:p-0  ">
-      <div class="border">
+      <div class="">
         <LeftSideNav></LeftSideNav>
+        <LeftSidePic></LeftSidePic>
       </div>
       <div class="border md:col-span-2">
-        <h2 class="text-4xl">news commig</h2>
+        <NewsAll></NewsAll>
       </div>
-      <div class="border">
+      <div class="">
         <RightSideNav></RightSideNav>
       </div>
     </div>

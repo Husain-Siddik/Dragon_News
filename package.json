@@ -10,6 +10,8 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@kalimahapps/vue-icons": "^1.7.1",
+    "axios": "^1.7.5",
     "moment": "^2.30.1",
     "pinia": "^2.1.7",
     "vue": "^3.4.29",
