@@ -4,7 +4,6 @@ import { ref } from "vue";
 export const useAllNewsStore = defineStore('news', {
     state: () => (
         {
-            count: 0,
             name: 'Eduardo',
             newsCatagoryId: ref(''),
             news: ref('')
@@ -14,7 +13,7 @@ export const useAllNewsStore = defineStore('news', {
     },
     actions: {
         // all news loading
-        async loadNews(category ) {
+        async loadNews(category = 5) {
             // console.log('news loded');
             // console.log(category);
             try {

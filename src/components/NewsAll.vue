@@ -29,6 +29,7 @@
 
 
         <!-- card -->
+
         <div class="font-_popins">
             <div class="card bg-base-100 w-full shadow-xl">
                 <p class="text-xl font-bold px-10 pt-5">{{ news?.title }}</p>
@@ -37,10 +38,16 @@
                 </figure>
                 <div class="card-body items-start ">
                     <!-- conditional reander -->
-                    <p v-if="news?.details.length > 500" class="font-medium text-base border-b-2">{{ news
-        ?.details.slice(0, 200) }}<span class="text-red-400">read more....</span> </p>
-                    <p v-else>{{ news?.details }}</p>
-                    <!--  -->
+                    <router-link :to="{ name: 'NewsDetails', params: { _id: news._id } }">
+                        <p v-if="news?.details.length > 500" class="font-medium text-base border-b-2">{{ news
+        ?.details.slice(0, 200) }}
+
+                            <span class="text-red-400">read more....</span>
+                        </p>
+                        <p v-else>{{ news?.details }}</p>
+
+                    </router-link>
+                    <!-- router link -->
                     <!-- rating -->
                     <div class=" w-full flex justify-between items-center">
                         <div class=" flex items-center gap-3">
@@ -61,18 +68,20 @@
                             <p>
                                 {{ news?.total_view }}
                             </p>
+
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- card -->
 
+            <!-- card -->
+
+        </div>
     </div>
 </template>
 <script setup>
 import { BsShare, AnFilledEye } from '@kalimahapps/vue-icons';
-import {RouterLink} from 'vue-router'
+import { RouterLink } from 'vue-router'
 import saveicon from '../../public/saveicon.png'
 import { useAllNewsStore } from '@/stores/AllNews'
 const store = useAllNewsStore()

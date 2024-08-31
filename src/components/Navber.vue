@@ -45,8 +45,9 @@
                 <!-- profile buton added -->
                 <div class="flex gap-3">
                     <div >
-                        <!-- <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" /> -->
+                        <router-link :to="{name:'login'}">
                          <button class = "btn bg-slate-500 text-yellow-50 text-base px-7">login</button>
+                        </router-link>
                     </div>
                     <div class="dropdown dropdown-end">
                         <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
@@ -74,7 +75,7 @@
                             </li>
                             <li>
                                 <div class="justify-start pl-6">
-                                     login
+                                    <router-link :to="{name : 'login'}">login</router-link>
 
                                 </div>
                             </li>
