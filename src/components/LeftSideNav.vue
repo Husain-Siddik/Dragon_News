@@ -18,7 +18,7 @@ const Nav = ref('')
 onMounted(() => {
     async function getnav() {
         try {
-            const response = await axios.get('/public/data/categories.json');
+            const response = await axios.get('/data/categories.json');
             //console.log(response.data);
             Nav.value = response.data
             //console.log(Nav.value);

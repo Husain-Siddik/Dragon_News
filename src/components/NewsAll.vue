@@ -82,7 +82,7 @@
 <script setup>
 import { BsShare, AnFilledEye } from '@kalimahapps/vue-icons';
 import { RouterLink } from 'vue-router'
-import saveicon from '../../public/saveicon.png'
+import saveicon from '/saveicon.png'
 import { useAllNewsStore } from '@/stores/AllNews'
 const store = useAllNewsStore()
 </script>

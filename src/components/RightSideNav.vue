@@ -62,8 +62,8 @@
 
 <script setup>
 import { DeGooglePlain, AkGithubFill, AkFacebookFill, AkInstagramFill, AkTwitterFill } from '@kalimahapps/vue-icons';
-import qZone1 from '../../public/imges/qZone1.png'
-import qZone2 from '../../public/imges/qZone2.png'
-import qZone3 from '../../public/imges/qZone3.png'
+import qZone1 from '/imges/qZone1.png'
+import qZone2 from '/imges/qZone2.png'
+import qZone3 from '/imges/qZone3.png'
 import AmazingNewspaper from '../components/AmazingNewspaper.vue'
 </script>

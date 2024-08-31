@@ -9,6 +9,6 @@
 </template>
 
 <script setup>
-import logo from '../../public/imges/logo.png'
+import logo from '/imges/logo.png'
 import moment from 'moment';
 </script>

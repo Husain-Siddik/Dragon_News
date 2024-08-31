@@ -19,8 +19,8 @@
 </template>
 <script setup>
 import { AkPanelTop } from '@kalimahapps/vue-icons';
-import  one from '../../public/imges/one.png'
-import  two from '../../public/imges/two.png'
-import  three from '../../public/imges/three.png'
+import  one from '/imges/one.png'
+import  two from '/imges/two.png'
+import  three from '/imges/three.png'
 
 </script>
