@@ -19,7 +19,7 @@ import NewsAll from '../components/NewsAll.vue'
         <LeftSideNav></LeftSideNav>
         <LeftSidePic></LeftSidePic>
       </div>
-      <div class="border md:col-span-2">
+      <div class=" md:col-span-2">
         <NewsAll></NewsAll>
       </div>
       <div class="">

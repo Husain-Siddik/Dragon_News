@@ -11,12 +11,13 @@
             <!-- from  -->
             <div class=" p-3 lg:w-1/2 mx-auto border-t-2">
                 <div class=" border rounded-lg">
-                    <form  @submit.prevent="HandeleFrom"  class="card-body">
+                    <form @submit.prevent="HandeleFrom" class="card-body">
                         <div class="form-control">
                             <label class="label">
                                 <span class="label-text">Email</span>
                             </label>
-                            <input v-model="store.typedEmail" type="email" placeholder="email" class="input input-bordered" required />
+                            <input v-model="store.typedEmail" type="email" placeholder="email"
+                                class="input input-bordered" required />
                         </div>
                         <div class="form-control">
                             <label class="label">
@@ -25,16 +26,18 @@
                             <!-- password hide show -->
                             <div class="relative">
 
-                                <input v-if="!show " type="text" placeholder="password" class="input input-bordered w-full"
-                                v-model="store.typedPass"
-                                    required />
-                                <input v-if="show" type="password" placeholder="password" class="input input-bordered w-full"
-                                v-model="store.typedPass"
-                                    required />
+                                <input v-if="!show" type="text" placeholder="password"
+                                    class="input input-bordered w-full" v-model="store.typedPass" required />
+                                <input v-if="show" type="password" placeholder="password"
+                                    class="input input-bordered w-full" v-model="store.typedPass" required />
 
                                 <span class="absolute mt-3 ml-[-2rem]" v-on:click="passShowHide">
-                                    <span v-if="show "><AnFilledEyeInvisible /></span>
-                                    <span v-if="!show"><AnFilledEye/></span>
+                                    <span v-if="show">
+                                        <AnFilledEyeInvisible />
+                                    </span>
+                                    <span v-if="!show">
+                                        <AnFilledEye />
+                                    </span>
                                 </span>
 
 
@@ -50,13 +53,27 @@
                         </div>
                     </form>
                     <p class="text-center font-semibold  pb-4">Dont’t Have An Account ? <span class="text-red-400">
-                        <router-link :to="{name :'registration'}">Register</router-link>
-                        
-                    </span></p>
+                            <router-link :to="{ name: 'registration' }">Register</router-link>
+
+                        </span></p>
                 </div>
             </div>
             <div>
 
+            </div>
+
+        </div>
+    </div>
+    <!-- succes or failler massage toster -->
+    <div>
+        <div class="toast toast-center toast-middle">
+
+            <div v-if="store.sucessToaser" class="alert alert-info ">
+                <span class=""> Successfully LogIn!</span>
+
+            </div>
+            <div v-if="store.ErorrToaster" class="alert alert-error">
+                <span class="text-white">Invalid Email or password</span>
             </div>
 
         </div>
@@ -69,6 +86,8 @@ import Navbar from '../components/Navber.vue'
 import Header from '../components/Header.vue'
 import { AnFilledEye, AnFilledEyeInvisible } from '@kalimahapps/vue-icons';
 import { UseAuthStore } from '@/stores/Auth';
+import { useRouter} from 'vue-router'
+const router = useRouter()
 const store = UseAuthStore()
 let show = ref('')
 function passShowHide() {
@@ -80,9 +99,14 @@ function passShowHide() {
 
 
 };
-function HandeleFrom(){
+function HandeleFrom() {
     console.log("from submited");
     store.SignInEmailAndPass()
-      
-}
+    
+    setTimeout(() => {
+       router.push({path : '/profile'})
+    }, 4000);
+};
+//redirect user
+
 </script>

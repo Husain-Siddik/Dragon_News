@@ -30,7 +30,7 @@ export const UseAuthStore = defineStore('AuthStore', {
                     this.Loginuser = user
                     // IdP data available using getAdditionalUserInfo(result)
                     // ...
-                    this.ErorrToaster = false
+                  
                     this.sucessToaser = true
                 }).catch((error) => {
                     // Handle Errors here.
@@ -38,11 +38,11 @@ export const UseAuthStore = defineStore('AuthStore', {
                     const errorMessage = error.message;
                     console.log(error);
                     this.ErorrToaster = true
-                    this.sucessToaser = false
+                  
 
                     // ...
                 }).finally(() => {
-                    console.log("done");
+                    
                     setTimeout(() => {
                         this.ErorrToaster = false
                         this.sucessToaser = false
@@ -67,6 +67,7 @@ export const UseAuthStore = defineStore('AuthStore', {
 
         // registration -------------
         registerWithEmail() {
+
             createUserWithEmailAndPassword(auth, this.typedEmail, this.typedPass, this.regname, this.regPhoto)
                 .then((userCredential) => {
                     //
@@ -88,6 +89,7 @@ export const UseAuthStore = defineStore('AuthStore', {
                     const user = userCredential.user;
                     this.Loginuser = user
                     console.log(this.Loginuser);
+                    this.sucessToaser = true
 
                     // ...
                 })
@@ -95,9 +97,14 @@ export const UseAuthStore = defineStore('AuthStore', {
                     const errorCode = error.code;
                     const errorMessage = error.message;
                     console.log(error);
-
+                    this.ErorrToaster = true
                     // ..
-                });
+                }).finally(()=>{
+                    setTimeout(() => {
+                        this.ErorrToaster = false;
+                        this.sucessToaser = false;
+                    }, 3000);
+                })
 
 
         },
@@ -109,15 +116,21 @@ export const UseAuthStore = defineStore('AuthStore', {
                     const user = userCredential.user;
                     this.Loginuser = user
                     console.log(this.Loginuser);
-                    
+                    this.sucessToaser =true
                     // ...
                 })
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
+                    this.ErorrToaster  = true
                     console.log(error);
                     
-                });
+                }).finally(()=>{
+                    setTimeout(() => {
+                          this.sucessToaser = false;
+                          this.ErorrToaster = false;
+                    }, 1000);
+                })
 
         }
     }

@@ -65,8 +65,8 @@
             <div v-if="store.sucessToaser" class="alert alert-info">
                 <span>loged in Succesfull !.</span>
             </div>
-            <div  v-if="store.ErorrToaster" class="alert alert-success">
-                <span>loh In faield !!</span>
+            <div  v-if="store.ErorrToaster" class="alert alert-error">
+                <span>login failed!!</span>
             </div>
         </div>
     </div>

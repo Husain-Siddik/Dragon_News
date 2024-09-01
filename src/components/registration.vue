@@ -43,16 +43,16 @@
                                 <!-- password hide show -->
                                 <div class="relative">
 
-                                    <input v-if="!show" type="text" placeholder="password"
+                                    <input v-if="show" type="text" placeholder="password"
                                         class="input input-bordered w-full" v-model="store.typedPass" required />
-                                    <input v-if="show" type="password" placeholder="password"
+                                    <input v-if="!show" type="password" placeholder="password"
                                         class="input input-bordered w-full" v-model="store.typedPass" required />
 
                                     <span class="absolute mt-3 ml-[-2rem]" v-on:click="passShowHide">
-                                        <span v-if="show">
+                                        <span v-if="!show">
                                             <AnFilledEyeInvisible />
                                         </span>
-                                        <span v-if="!show">
+                                        <span v-if="show">
                                             <AnFilledEye />
                                         </span>
                                     </span>
@@ -79,7 +79,23 @@
                     </div>
                 </div>
                 <div>
+                    <!-- succes error toaser -->
+                    <div>
+                        <div class="toast toast-center toast-middle">
 
+                            <div v-if="store.sucessToaser" class="alert alert-info ">
+                                <span class=""> registration succesfull !</span>
+
+                            </div>
+                            <div v-if="store.ErorrToaster" class="alert alert-error">
+                                <span class="text-white">something went wrong</span>
+                            </div>
+                            <div v-if="tramsAndCondition" class="alert alert-error">
+                                <span class="text-white">Please accept our terms and condition</span>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -91,14 +107,17 @@
 import Navbar from '@/components/Navber.vue'
 import { UseAuthStore } from '@/stores/Auth';
 import { AnFilledEye, AnFilledEyeInvisible } from '@kalimahapps/vue-icons';
-import { ref } from 'vue'
+import { ref } from 'vue';
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const store = UseAuthStore()
 
-let show = ref('')
-let checked = ref('')
+const show = ref('')
+// for trams and condition 
+const checked = ref('')
+const tramsAndCondition = ref(false)
 
 function passShowHide() {
-    console.log("sjfgsfsdyufdftdf");
     // for store
     // this.show = !this.show
     //    for vue template
@@ -109,8 +128,24 @@ function passShowHide() {
 function HandeleRegistration() {
     console.log("registration press");
     console.log(checked.value);
-    console.log(store.regname,store.regPhoto,store.typedEmail,store.typedPass);
-    store.registerWithEmail()
 
-}
+    if (checked.value) {
+        store.registerWithEmail()
+        // redirect user
+        setTimeout(() => {
+            router.push({ path: '/profile' })
+        }, 4000);
+        console.log("ok");
+
+    } else {
+        console.log("not ok");
+        tramsAndCondition.value = true;
+        
+        setTimeout(() => {
+            tramsAndCondition.value = false;
+        }, 1000);
+    }
+};
+
+
 </script>

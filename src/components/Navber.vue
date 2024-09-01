@@ -1,10 +1,10 @@
 <script setup>
-import {UseAuthStore} from '@/stores/Auth'
+import { UseAuthStore } from '@/stores/Auth'
 const store = UseAuthStore()
 </script>
 
 <template>
-    <main >
+    <main>
 
         <div class="navbar bg-base-100">
             <div class="navbar-start">
@@ -37,7 +37,7 @@ const store = UseAuthStore()
                         <RouterLink to="/about">About</RouterLink>
                     </li>
                     <li>
-                        <RouterLink :to="{name:'career'}">Career</RouterLink>
+                        <RouterLink :to="{ name: 'career' }">Career</RouterLink>
                     </li>
 
                 </ul>
@@ -45,9 +45,9 @@ const store = UseAuthStore()
             <div class="navbar-end">
                 <!-- profile buton added -->
                 <div class="flex gap-3">
-                    <div >
-                        <router-link :to="{name:'login'}">
-                         <button class = "btn bg-slate-500 text-yellow-50 text-base px-7">login</button>
+                    <div v-if="!store.Loginuser">
+                        <router-link :to="{ name: 'login' }">
+                            <button class="btn bg-slate-500 text-yellow-50 text-base px-7">login</button>
                         </router-link>
                     </div>
                     <div class="dropdown dropdown-end">
@@ -58,7 +58,7 @@ const store = UseAuthStore()
                                     src="/imges/user.png" />
                                 <img v-if="store.Loginuser" alt="Tailwind CSS Navbar component"
                                     :src="store.Loginuser?.photoURL" />
-                                
+
                             </div>
                             <div class="w-10 rounded-full">
 
@@ -69,22 +69,21 @@ const store = UseAuthStore()
                             class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow ">
                             <li>
                                 <!-- User only see profile if loged in -->
-                                <div>
-                                    <router-link :to="{name:'profile'}">
-                                    <a class="justify-between pl-3">
-                                          Profile
-                                        <span class="badge">New</span>
-                                    </a>
-                                </router-link>
+                                <div v-if="store.Loginuser">
+                                    <router-link :to="{ name: 'profile' }">
+                                        <a class="justify-between pl-3">
+                                            Profile
+                                        </a>
+                                    </router-link>
                                 </div>
                             </li>
-                            <li>
+                            <li v-if="!store.Loginuser">
                                 <div class="justify-start pl-6">
-                                    <router-link :to="{name : 'login'}">login</router-link>
+                                    <router-link :to="{ name: 'registration' }">Register</router-link>
 
                                 </div>
                             </li>
-                            
+
                         </ul>
                     </div>
                 </div>
