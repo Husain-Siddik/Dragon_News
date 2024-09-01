@@ -2,7 +2,7 @@
     <div>
         <p class="font-_outfit font-bold p-2 text-xl"> Login With </p>
         <div class="flex flex-col gap-2 p-2">
-            <button v-on:click="store.GoogleSignIn" class="btn text-blue-400">
+            <button v-on:click="signinwithgoogle" class="btn text-blue-400">
                 <DeGooglePlain />
                 logIn with Google
             </button>
@@ -79,5 +79,19 @@ import qZone2 from '/imges/qZone2.png'
 import qZone3 from '/imges/qZone3.png'
 import AmazingNewspaper from '../components/AmazingNewspaper.vue'
 import { UseAuthStore } from '@/stores/Auth';
+import { useRouter} from 'vue-router'
+const router= useRouter()
 const store = UseAuthStore()
+
+function signinwithgoogle (){
+
+    store.GoogleSignIn()
+
+    setTimeout(() => {
+        router.push({name : 'profile'})
+    }, 5000);
+
+}
+
+
 </script>

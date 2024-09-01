@@ -30,7 +30,7 @@ export const UseAuthStore = defineStore('AuthStore', {
                     this.Loginuser = user
                     // IdP data available using getAdditionalUserInfo(result)
                     // ...
-                  
+
                     this.sucessToaser = true
                 }).catch((error) => {
                     // Handle Errors here.
@@ -38,11 +38,11 @@ export const UseAuthStore = defineStore('AuthStore', {
                     const errorMessage = error.message;
                     console.log(error);
                     this.ErorrToaster = true
-                  
+
 
                     // ...
                 }).finally(() => {
-                    
+
                     setTimeout(() => {
                         this.ErorrToaster = false
                         this.sucessToaser = false
@@ -99,7 +99,14 @@ export const UseAuthStore = defineStore('AuthStore', {
                     console.log(error);
                     this.ErorrToaster = true
                     // ..
-                }).finally(()=>{
+                }).finally(() => {
+                    // clearing from 
+                    this.regname = ''
+                    this.regPhoto = ''
+                    this.typedEmail = ""
+                    this.typedPass = ''
+
+                    //
                     setTimeout(() => {
                         this.ErorrToaster = false;
                         this.sucessToaser = false;
@@ -110,25 +117,30 @@ export const UseAuthStore = defineStore('AuthStore', {
         },
         SignInEmailAndPass() {
             console.log("sign in press");
-            signInWithEmailAndPassword(auth, this.typedEmail,this.typedPass)
+            signInWithEmailAndPassword(auth, this.typedEmail, this.typedPass)
                 .then((userCredential) => {
                     // Signed in 
                     const user = userCredential.user;
                     this.Loginuser = user
                     console.log(this.Loginuser);
-                    this.sucessToaser =true
+                    this.sucessToaser = true
                     // ...
                 })
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
-                    this.ErorrToaster  = true
+                    this.ErorrToaster = true
                     console.log(error);
-                    
-                }).finally(()=>{
+
+                }).finally(() => {
+                    // clearing from 
+                    this.regname = ''
+                    this.typedEmail = ""
+                    this.typedPass = ''
+                    // 
                     setTimeout(() => {
-                          this.sucessToaser = false;
-                          this.ErorrToaster = false;
+                        this.sucessToaser = false;
+                        this.ErorrToaster = false;
                     }, 1000);
                 })
 

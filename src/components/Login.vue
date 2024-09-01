@@ -26,16 +26,16 @@
                             <!-- password hide show -->
                             <div class="relative">
 
-                                <input v-if="!show" type="text" placeholder="password"
+                                <input v-if="show" type="text" placeholder="password"
                                     class="input input-bordered w-full" v-model="store.typedPass" required />
-                                <input v-if="show" type="password" placeholder="password"
+                                <input v-if="!show" type="password" placeholder="password"
                                     class="input input-bordered w-full" v-model="store.typedPass" required />
 
                                 <span class="absolute mt-3 ml-[-2rem]" v-on:click="passShowHide">
-                                    <span v-if="show">
+                                    <span v-if="!show">
                                         <AnFilledEyeInvisible />
                                     </span>
-                                    <span v-if="!show">
+                                    <span v-if="show">
                                         <AnFilledEye />
                                     </span>
                                 </span>
