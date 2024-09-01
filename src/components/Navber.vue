@@ -1,5 +1,6 @@
 <script setup>
-
+import {UseAuthStore} from '@/stores/Auth'
+const store = UseAuthStore()
 </script>
 
 <template>
@@ -53,8 +54,10 @@
                         <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                             <!-- after log  in profile icon change -->
                             <div class="w-10 rounded-full">
-                                <img alt="Tailwind CSS Navbar component"
+                                <img v-if="!store.Loginuser" alt="Tailwind CSS Navbar component"
                                     src="/imges/user.png" />
+                                <img v-if="store.Loginuser" alt="Tailwind CSS Navbar component"
+                                    :src="store.Loginuser?.photoURL" />
                                 
                             </div>
                             <div class="w-10 rounded-full">
@@ -67,10 +70,12 @@
                             <li>
                                 <!-- User only see profile if loged in -->
                                 <div>
+                                    <router-link :to="{name:'profile'}">
                                     <a class="justify-between pl-3">
                                           Profile
                                         <span class="badge">New</span>
                                     </a>
+                                </router-link>
                                 </div>
                             </li>
                             <li>

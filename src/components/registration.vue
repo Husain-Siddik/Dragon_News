@@ -96,6 +96,7 @@ const store = UseAuthStore()
 
 let show = ref('')
 let checked = ref('')
+
 function passShowHide() {
     console.log("sjfgsfsdyufdftdf");
     // for store
@@ -109,7 +110,7 @@ function HandeleRegistration() {
     console.log("registration press");
     console.log(checked.value);
     console.log(store.regname,store.regPhoto,store.typedEmail,store.typedPass);
-    
+    store.registerWithEmail()
 
 }
 </script>

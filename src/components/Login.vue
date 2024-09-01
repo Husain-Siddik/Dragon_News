@@ -81,9 +81,8 @@ function passShowHide() {
 
 };
 function HandeleFrom(){
-     console.log(store.typedEmail);
-     console.log(store.typedPass);
     console.log("from submited");
+    store.SignInEmailAndPass()
       
 }
 </script>

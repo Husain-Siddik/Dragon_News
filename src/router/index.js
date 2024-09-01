@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import {UseAuthStore} from '@/stores/Auth'
 import HomeView from '../views/HomeView.vue'
 import NewsDetails from '../components/NewsDetails.vue'
 const router = createRouter({
@@ -18,25 +19,48 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
-      path:'/career',
-      name : 'career',
-      component:()=> import ('../views/CareerView.vue')  
+      path: '/career',
+      name: 'career',
+      component: () => import('../views/CareerView.vue')
     },
     {
-       path :'/NewsDetails/:_id',
-       name :'NewsDetails',
-       component:NewsDetails
+      path: '/NewsDetails/:_id',
+      name: 'NewsDetails',
+      component: NewsDetails
     },
     {
-      path : '/login',
-      name :'login',
-    component:()=>import('../components/Login.vue')
+      path: '/login',
+      name: 'login',
+      component: () => import('../components/Login.vue'),
+
+
     },
     {
-      path:'/registration',
-      name :'registration',
-      component:()=>import('../components/registration.vue')
-    }
+      path: '/registration',
+      name: 'registration',
+      component: () => import('../components/registration.vue')
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: () => import('../components/Profile.vue'),
+      meta: { requiresAuth: true },
+      beforeEnter: (to, from, next) => {
+        // store called inside route
+        const store = UseAuthStore()
+        const isAuthenticated = store.Loginuser;
+        // wihout login profile route e inter kora jabe na
+        if (to.meta.requiresAuth && !isAuthenticated) {
+          next('/login'); // Redirect to login if not authenticated
+        }
+        else {
+          next(); // Proceed to route
+
+        }
+
+      }
+
+    },
   ]
 })
 

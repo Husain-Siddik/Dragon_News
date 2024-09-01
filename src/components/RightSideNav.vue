@@ -2,7 +2,7 @@
     <div>
         <p class="font-_outfit font-bold p-2 text-xl"> Login With </p>
         <div class="flex flex-col gap-2 p-2">
-            <button class="btn text-blue-400">
+            <button v-on:click="store.GoogleSignIn" class="btn text-blue-400">
                 <DeGooglePlain />
                 logIn with Google
             </button>
@@ -58,6 +58,18 @@
 
     <!-- Amazing Newspaper -->
     <AmazingNewspaper></AmazingNewspaper>
+
+    <!-- toaster and error massage -->
+    <div>
+        <div class="toast toast-center toast-middle">
+            <div v-if="store.sucessToaser" class="alert alert-info">
+                <span>loged in Succesfull !.</span>
+            </div>
+            <div  v-if="store.ErorrToaster" class="alert alert-success">
+                <span>loh In faield !!</span>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script setup>
@@ -66,4 +78,6 @@ import qZone1 from '/imges/qZone1.png'
 import qZone2 from '/imges/qZone2.png'
 import qZone3 from '/imges/qZone3.png'
 import AmazingNewspaper from '../components/AmazingNewspaper.vue'
+import { UseAuthStore } from '@/stores/Auth';
+const store = UseAuthStore()
 </script>
