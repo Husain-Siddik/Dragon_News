@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import {UseAuthStore} from '@/stores/Auth'
 import HomeView from '../views/HomeView.vue'
 import NewsDetails from '../components/NewsDetails.vue'
+import Profile from '../components/Profile.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -43,7 +44,7 @@ const router = createRouter({
     {
       path: '/profile',
       name: 'profile',
-      component: () => import('../components/Profile.vue'),
+      component:Profile ,
       meta: { requiresAuth: true },
       beforeEnter: (to, from, next) => {
         // store called inside route

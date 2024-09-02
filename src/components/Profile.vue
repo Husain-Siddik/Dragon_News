@@ -9,9 +9,8 @@
                 </div>
             </div>
             <div class="card-body ">
-                <h2 class=""> Name :{{ store?.Loginuser?.displayName
-                    }}</h2>
-                <p>Email :{{ store?.Loginuser?.email }} </p>
+                <h2 class="text-center"> Welcome Mr. <span class="text-lime-500 text-lg">{{ store?.Loginuser?.displayName }}</span></h2>
+                <p class="text-center">Email :{{ store?.Loginuser?.email }} </p>
                 <div class="w-full">
                     <button v-on:click="HandelSignOut" class="btn btn-primary w-full">Sign_OUT</button>
                 </div>

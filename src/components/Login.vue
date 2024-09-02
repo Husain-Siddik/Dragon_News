@@ -16,7 +16,7 @@
                             <label class="label">
                                 <span class="label-text">Email</span>
                             </label>
-                            <input v-model="store.typedEmail" type="email" placeholder="email"
+                            <input v-model="store.typeLoginEmail" type="email" placeholder="email"
                                 class="input input-bordered" required />
                         </div>
                         <div class="form-control">
@@ -27,9 +27,9 @@
                             <div class="relative">
 
                                 <input v-if="show" type="text" placeholder="password"
-                                    class="input input-bordered w-full" v-model="store.typedPass" required />
+                                    class="input input-bordered w-full" v-model="store.typedLoginpass" required />
                                 <input v-if="!show" type="password" placeholder="password"
-                                    class="input input-bordered w-full" v-model="store.typedPass" required />
+                                    class="input input-bordered w-full" v-model="store.typedLoginpass" required />
 
                                 <span class="absolute mt-3 ml-[-2rem]" v-on:click="passShowHide">
                                     <span v-if="!show">
@@ -73,7 +73,8 @@
 
             </div>
             <div v-if="store.ErorrToaster" class="alert alert-error">
-                <span class="text-white">Invalid Email or password</span>
+                <span v-if="!store.ErrorMassages" class="text-white">Invalid Email or password</span>
+                <span v-if="store.ErrorMassages" class="">{{ store.ErrorMassages }}</span>
             </div>
 
         </div>
@@ -91,7 +92,7 @@ const router = useRouter()
 const store = UseAuthStore()
 let show = ref('')
 function passShowHide() {
-    console.log("sjfgsfsdyufdftdf");
+    console.log("password hide show");
     // for store
     // this.show = !this.show
     //    for vue template
@@ -105,7 +106,7 @@ function HandeleFrom() {
     
     setTimeout(() => {
        router.push({path : '/profile'})
-    }, 4000);
+    }, 3000);
 };
 //redirect user
 

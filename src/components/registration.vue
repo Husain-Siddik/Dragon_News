@@ -25,7 +25,7 @@
                                 <label class="label">
                                     <span class="label-text">Photo URL</span>
                                 </label>
-                                <input v-model="store.regPhoto" type="url" placeholder="Enter your Photo URL"
+                                <input v-model="store.regPhoto" type="text" placeholder="Enter your Photo URL"
                                     class="input input-bordered" />
                             </div>
 
@@ -87,11 +87,16 @@
                                 <span class=""> registration succesfull !</span>
 
                             </div>
-                            <div v-if="store.ErorrToaster" class="alert alert-error">
-                                <span class="text-white">something went wrong</span>
+                            <div v-if="store.ErorrToaster  " class="alert alert-error">
+                                <span class="text-white">something went wrong {{ store.ErrorMassage }}
+                                </span>
+                                <span> </span>
                             </div>
+                    
                             <div v-if="tramsAndCondition" class="alert alert-error">
-                                <span class="text-white">Please accept our terms and condition</span>
+                                <span class="text-white">Please accept our terms and condition
+                                </span>
+
                             </div>
 
                         </div>
@@ -101,13 +106,14 @@
             </div>
         </div>
     </div>
+
 </template>
 
 <script setup>
 import Navbar from '@/components/Navber.vue'
 import { UseAuthStore } from '@/stores/Auth';
 import { AnFilledEye, AnFilledEyeInvisible } from '@kalimahapps/vue-icons';
-import { ref } from 'vue';
+import { ref} from 'vue';
 import { useRouter } from 'vue-router'
 const router = useRouter()
 const store = UseAuthStore()
@@ -125,27 +131,31 @@ function passShowHide() {
 
 
 };
-function HandeleRegistration() {
-    console.log("registration press");
-    console.log(checked.value);
 
-    if (checked.value) {
+async function HandeleRegistration() {
+    console.log("registration press");
+   
+
+      if (checked.value) {
         store.registerWithEmail()
         // redirect user
-        setTimeout(() => {
-            router.push({ path: '/profile' })
-        }, 4000);
-        console.log("ok");
-
-    } else {
-        console.log("not ok");
-        tramsAndCondition.value = true;
         
+    }
+    else {
+        tramsAndCondition.value = true;
+
         setTimeout(() => {
             tramsAndCondition.value = false;
-        }, 1000);
+        }, 2000);
     }
+    //
 };
+
+
+
+
+
+
 
 
 </script>

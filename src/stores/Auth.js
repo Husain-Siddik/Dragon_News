@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import router from '@/router/index';
 // everywhere use
 import auth from "@/firebase/firebase.config";
 
@@ -13,9 +14,14 @@ export const UseAuthStore = defineStore('AuthStore', {
         regPhoto: '',
         typedEmail: "",
         typedPass: '',
+        typeLoginEmail: '',
+        typedLoginpass: '',
         Loginuser: '',
         sucessToaser: '',
         ErorrToaster: '',
+        ErrorMassage: '',
+        redirect: '',
+        Errorpasslength: '',
 
 
     }),
@@ -55,9 +61,11 @@ export const UseAuthStore = defineStore('AuthStore', {
             signOut(auth).then(() => {
                 // Sign-out successful.
                 console.log('sign out succesfull');
+                this.typeLoginEmail = ''
+                this.typedLoginpass = ''
+                this.Loginuser = ''
 
 
-                this.Loginuser = ""
             }).catch((error) => {
                 // An error happened.
                 console.log(error);
@@ -82,6 +90,7 @@ export const UseAuthStore = defineStore('AuthStore', {
                         // An error occurred
                         // ...
                         console.log(error);
+                        this.ErrorMassage = error
 
                     });
                     //
@@ -90,34 +99,47 @@ export const UseAuthStore = defineStore('AuthStore', {
                     this.Loginuser = user
                     console.log(this.Loginuser);
                     this.sucessToaser = true
+                    this.redirect = true
+
+
+                    if (this.Loginuser) {
+                        setTimeout(() => {
+                            
+                            router.push('/profile')
+                        }, 3000);
+
+                    }
 
                     // ...
                 })
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
-                    console.log(error);
+                    console.log(errorMessage);
                     this.ErorrToaster = true
+                    this.ErrorMassage = errorMessage
                     // ..
                 }).finally(() => {
                     // clearing from 
-                    this.regname = ''
-                    this.regPhoto = ''
-                    this.typedEmail = ""
-                    this.typedPass = ''
+                    if (this.Loginuser) {
+                        this.regname = ''
+                        this.typedEmail = ""
+                        this.typedPass = ''
+                        this.regPhoto = ""
+                    }
 
                     //
                     setTimeout(() => {
                         this.ErorrToaster = false;
                         this.sucessToaser = false;
-                    }, 3000);
+                    }, 2000);
                 })
 
 
         },
         SignInEmailAndPass() {
             console.log("sign in press");
-            signInWithEmailAndPassword(auth, this.typedEmail, this.typedPass)
+            signInWithEmailAndPassword(auth, this.typeLoginEmail, this.typedLoginpass)
                 .then((userCredential) => {
                     // Signed in 
                     const user = userCredential.user;
@@ -129,14 +151,12 @@ export const UseAuthStore = defineStore('AuthStore', {
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
-                    this.ErorrToaster = true
+                    this.ErorrToaster = true;
+                    this.ErrorMassage = errorMessage
                     console.log(error);
 
                 }).finally(() => {
                     // clearing from 
-                    this.regname = ''
-                    this.typedEmail = ""
-                    this.typedPass = ''
                     // 
                     setTimeout(() => {
                         this.sucessToaser = false;
