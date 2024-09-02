@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+//way to use route in pinia
 import router from '@/router/index';
 // everywhere use
 import auth from "@/firebase/firebase.config";
@@ -38,6 +39,14 @@ export const UseAuthStore = defineStore('AuthStore', {
                     // ...
 
                     this.sucessToaser = true
+
+                    if (this.Loginuser) {
+                        setTimeout(() => {
+                            router.push({ name: 'profile' })
+                        }, 3000);
+
+                    }
+
                 }).catch((error) => {
                     // Handle Errors here.
                     const errorCode = error.code;
@@ -104,7 +113,7 @@ export const UseAuthStore = defineStore('AuthStore', {
 
                     if (this.Loginuser) {
                         setTimeout(() => {
-                            
+
                             router.push('/profile')
                         }, 3000);
 
