@@ -4,7 +4,7 @@
     <div class=" w-80 mx-auto pt-10 pb-10">
         <div class="card bg-base-100  shadow-xl">
 
-            <div class="relative border">
+            <div class="relative ">
                 <div class="avatar flex  justify-center ">
                     <div class="w-24 rounded" v-if="!store.Loginuser.photoURL">
 
@@ -14,7 +14,9 @@
                         
                     </div>
 
-                    <div v-if="store.Loginuser.photoURL" class="w-24 rounded"><img  :src="store.Loginuser?.photoURL" alt=""></div>
+                    <div v-if="store.Loginuser.photoURL" class="w-24 rounded">
+                        <img  :src="store.Loginuser?.photoURL" alt="">
+                    </div>
 
                 </div>
                 <div class="absolute inset-x-44 bottom-0">
@@ -53,8 +55,10 @@ import Header from '@/components/Header.vue'
 import Navber from '@/components/Navber.vue'
 import { UseAuthStore } from '@/stores/Auth'
 import userpic from '/public/imges/user.png'
+import { useRouter} from 'vue-router'
 import { FlFilledCameraArrowUp } from '@kalimahapps/vue-icons';
 
+const router = useRouter()
 const store = UseAuthStore()
 
 
