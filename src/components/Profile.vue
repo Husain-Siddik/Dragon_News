@@ -25,9 +25,11 @@
                         <span class="text-3xl text-orange-700" v-if="!store.Loginuser.photoURL">
                             <FlFilledCameraArrowUp />
                         </span>
-                        <span class="text-3xl text-orange-700" v-if="!store.isgoogleOngitHubLoggedIn ">
-                            <FlFilledCameraArrowUp />
-                        </span>
+                        <!-- <span class="text-3xl text-orange-700" v-if="!store.isgoogleOngitHubLoggedIn ">
+                            <span>
+                                <FlFilledCameraArrowUp />
+                            </span>
+                        </span> -->
                     </label>
                 </div>
 
