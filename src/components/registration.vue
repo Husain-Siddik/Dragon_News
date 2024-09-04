@@ -21,13 +21,13 @@
                                 <input v-model="store.regname" type="text" placeholder="Enter Your Name "
                                     class="input input-bordered" required />
                             </div>
-                            <div class="form-control">
+                            <!-- <div class="form-control">
                                 <label class="label">
                                     <span class="label-text">Photo URL</span>
                                 </label>
                                 <input v-model="store.regPhoto" type="text" placeholder="Enter your Photo URL"
                                     class="input input-bordered" />
-                            </div>
+                            </div> -->
 
                             <div class="form-control">
                                 <label class="label">

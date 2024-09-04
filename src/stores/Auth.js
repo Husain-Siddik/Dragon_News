@@ -2,7 +2,10 @@ import { defineStore } from "pinia";
 //way to use route in pinia
 import router from '@/router/index';
 // everywhere use
-import auth from "@/firebase/firebase.config";
+import { auth } from '../firebase/firebase.config';
+import { storage } from "../firebase/firebase.config";
+import { ref, uploadBytes, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+//import{storage} from "@/firebase/firebase.config"
 
 import { signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
@@ -23,6 +26,12 @@ export const UseAuthStore = defineStore('AuthStore', {
         ErrorMassage: '',
         redirect: '',
         Errorpasslength: '',
+        //profile
+        imgUrl: null,
+        isfileuploded: '',
+        file: null,
+        isgoogleOngitHubLoggedIn : '',
+
 
 
     }),
@@ -39,6 +48,7 @@ export const UseAuthStore = defineStore('AuthStore', {
                     // ...
 
                     this.sucessToaser = true
+                    this.isgoogleOngitHubLoggedIn = true
 
                     if (this.Loginuser) {
                         setTimeout(() => {
@@ -73,6 +83,7 @@ export const UseAuthStore = defineStore('AuthStore', {
                 this.typeLoginEmail = ''
                 this.typedLoginpass = ''
                 this.Loginuser = ''
+                this.imgUrl = null
 
 
             }).catch((error) => {
@@ -89,10 +100,11 @@ export const UseAuthStore = defineStore('AuthStore', {
                 .then((userCredential) => {
                     //
                     updateProfile(auth.currentUser, {
-                        displayName: this.regname, photoURL: this.regPhoto
+                        displayName: this.regname
                     }).then(() => {
                         // Profile updated!
                         // ...
+                        // , photoURL: this.regPhoto
                         console.log("ptofile updated");
 
                     }).catch((error) => {
@@ -172,6 +184,83 @@ export const UseAuthStore = defineStore('AuthStore', {
                         this.ErorrToaster = false;
                     }, 1000);
                 })
+
+        },
+
+
+        setFile(file) {
+            this.file = file;
+        },
+
+        async uplodehandel() {
+
+
+            console.log(this.file);
+
+
+            try {
+                const fileRef = ref(storage, `imege/${this.file.name}`);
+                await uploadBytes(fileRef, this.file);
+                console.log(`File uploaded successfully: ${this.file.name}`);
+
+                //return `File uploaded successfully: ${ this.file.name}`;
+
+            } catch (error) {
+                console.error("Error uploading file:", error);
+                this.isfileuploded = false;
+            } finally {
+                this.downlodehandele()
+                setTimeout(() => {
+                    this.isfileuploded = false;
+                }, 2000);
+            }
+
+
+
+
+        },
+        downlodehandele() {
+            getDownloadURL(ref(storage, `imege/${this.file.name}`))
+                .then((url) => {
+                    // `url` is the download URL for 'images/stars.jpg'
+
+                    // This can be downloaded directly:
+                    const xhr = new XMLHttpRequest();
+                    xhr.responseType = 'blob';
+                    xhr.onload = (event) => {
+                        const blob = xhr.response;
+                    };
+                    xhr.open('GET', url);
+                    xhr.send();
+
+                    // Or inserted into an <img> element
+                    // const img = document.getElementById('myimg');
+                    // img.setAttribute('src', url);
+                    console.log(url);
+                    this.imgUrl = url
+                    // data set profile
+                    updateProfile(auth.currentUser, {
+                        photoURL: url
+                    }).then(() => {
+                        // Profile updated!
+                        console.log(" Profile updated");
+
+                        // ...
+                    }).catch((error) => {
+                        // An error occurred
+                        // ...
+                        console.log(error);
+                        
+                    });
+
+                    //
+
+                })
+                .catch((error) => {
+                    // Handle any errors
+                    console.log(error);
+
+                });
 
         }
     }
