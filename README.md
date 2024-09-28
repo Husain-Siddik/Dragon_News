@@ -1,6 +1,11 @@
+# live link
+
+https://elegant-fenglisu-0963d4.netlify.app/
+
 # Firebase-Dragon-News
 
 This template should help get you started developing with Vue 3 in Vite.
+
 
 ## Recommended IDE Setup
 
